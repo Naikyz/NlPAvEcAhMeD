@@ -2,32 +2,23 @@ version: "3.0"
 
 intents:
   - greet
+  - get_intent
   - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+
+actions:
+  - action_intent
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: "Hey ! Je suis Voxibot !"
+  - text: "Salut ! Je suis Voxibot !"
+  - text: "Coucou ! Je m'appelle Voxibot !"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
 
   utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  - text: "Bye bye !"
+  - text: "Merci et à bientôt !"
+  - text: "Au revoir !"
 
 session_config:
   session_expiration_time: 60

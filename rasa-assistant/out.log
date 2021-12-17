@@ -1,0 +1,73 @@
+2021-12-16 17:04:18,141 [INFO ]  Starting Rasa server on http://0.0.0.0:5005
+2021-12-16 17:04:19,354 [INFO ]  Loading model models/20211216-154644-maximum-bag.tar.gz...
+2021-12-16 17:04:30,208 [INFO ]  Rasa server is up and running.
+2021-12-16 17:04:35,205 [ERROR]  Exception occurred while handling uri: 'http://localhost:5005/webhooks/myio/webhook'
+Traceback (most recent call last):
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/engine/graph.py", line 461, in __call__
+    output = self._fn(self._component, **run_kwargs)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/nlu/classifiers/diet_classifier.py", line 1003, in process
+    out = self._predict(message)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/nlu/classifiers/diet_classifier.py", line 932, in _predict
+    return self.model.run_inference(model_data)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/utils/tensorflow/models.py", line 318, in run_inference
+    ] = self._rasa_predict(batch_in)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/utils/tensorflow/models.py", line 280, in _rasa_predict
+    outputs = tf_utils.sync_to_numpy_or_python_type(self.predict_step(batch_in))
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/utils/tensorflow/models.py", line 228, in predict_step
+    return self.batch_predict(batch_in)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/nlu/classifiers/diet_classifier.py", line 1721, in batch_predict
+    tf_batch_data = self.batch_to_model_data_format(
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/utils/tensorflow/models.py", line 473, in batch_to_model_data_format
+    tensor, idx = RasaModel._convert_sparse_features(
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/utils/tensorflow/models.py", line 518, in _convert_sparse_features
+    shape = [batch[idx + 2][i] for i in range(number_of_dimensions - 1)] + [
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/utils/tensorflow/models.py", line 518, in <listcomp>
+    shape = [batch[idx + 2][i] for i in range(number_of_dimensions - 1)] + [
+IndexError: tuple index out of range
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "handle_request", line 83, in handle_request
+    class Sanic(BaseSanic, metaclass=TouchUpMeta):
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/rasa-assistant/custom_channel.py", line 43, in receive
+    await on_new_message(
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/core/channels/channel.py", line 89, in handler
+    await app.agent.handle_message(message)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/core/agent.py", line 430, in handle_message
+    return await self.processor.handle_message(message)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/core/processor.py", line 136, in handle_message
+    tracker = await self.log_message(message, should_save_tracker=False)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/core/processor.py", line 383, in log_message
+    await self._handle_message_with_tracker(message, tracker)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/core/processor.py", line 682, in _handle_message_with_tracker
+    parse_data = await self.parse_message(message)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/core/processor.py", line 635, in parse_message
+    parse_data = self._parse_message_with_graph(message, only_output_properties)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/core/processor.py", line 659, in _parse_message_with_graph
+    results = self.graph_runner.run(
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/engine/runner/dask.py", line 106, in run
+    dask_result = dask.get(run_graph, run_targets)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/dask/local.py", line 553, in get_sync
+    return get_async(
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/dask/local.py", line 496, in get_async
+    for key, res_info, failed in queue_get(queue).result():
+  File "/usr/lib/python3.8/concurrent/futures/_base.py", line 437, in result
+    return self.__get_result()
+  File "/usr/lib/python3.8/concurrent/futures/_base.py", line 389, in __get_result
+    raise self._exception
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/dask/local.py", line 538, in submit
+    fut.set_result(fn(*args, **kwargs))
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/dask/local.py", line 234, in batch_execute_tasks
+    return [execute_task(*a) for a in it]
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/dask/local.py", line 234, in <listcomp>
+    return [execute_task(*a) for a in it]
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/dask/local.py", line 225, in execute_task
+    result = pack_exception(e, dumps)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/dask/local.py", line 220, in execute_task
+    result = _execute_task(task, data)
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/dask/core.py", line 119, in _execute_task
+    return func(*(_execute_task(a, cache) for a in args))
+  File "/home/kylian/voxibot/NlPAvEcAhMeD/venv/lib/python3.8/site-packages/rasa/engine/graph.py", line 468, in __call__
+    raise GraphComponentException(
+rasa.engine.exceptions.GraphComponentException: Error running graph component for node run_DIETClassifier6.
